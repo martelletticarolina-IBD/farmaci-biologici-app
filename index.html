@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 25.2.3.2 (MacOSX)"/>
+	<meta name="created" content="2025-09-06T11:05:52.348100000"/>
+	<meta name="changed" content="2025-09-06T11:06:45.746442000"/>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		p { margin-bottom: 0.25cm; line-height: 115%; background: transparent }
+	</style>
+</head>
+<body lang="it-IT" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 100%; margin-bottom: 0cm">
+&lt;!DOCTYPE html&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;html lang=&quot;it&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;head&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;meta
+charset=&quot;UTF-8&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;meta
+name=&quot;viewport&quot; content=&quot;width=device-width,
+initial-scale=1.0&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">   
+&lt;title&gt;Calendarizzazione Farmaci Biologici - MICI&lt;/title&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;script
+src=&quot;https://unpkg.com/react@18/umd/react.development.js&quot;&gt;&lt;/script&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;script
+src=&quot;https://unpkg.com/react-dom@18/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;script
+src=&quot;https://unpkg.com/@babel/standalone/babel.min.js&quot;&gt;&lt;/script&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;script
+src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;script
+src=&quot;https://unpkg.com/lucide@latest/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;style&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        body {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            margin:
+0;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            padding:
+0;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+sans-serif;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        }</p>
+<p style="line-height: 100%; margin-bottom: 0cm">       
+.app-container {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+min-height: 100vh;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">           
+background: linear-gradient(to bottom right, #dbeafe, #e0e7ff);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        }</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;/style&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;/head&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;body&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;div
+id=&quot;root&quot;&gt;&lt;/div&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    &lt;script
+type=&quot;text/babel&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        const {
+useState, useEffect } = React;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        const {
+Calendar, Clock, Pill } = lucide;</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">        const
+BiologicMedicationScheduler = () =&gt; {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+[currentDate, setCurrentDate] = useState(new
+Date().toISOString().split('T')[0]);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+[selectedInterval, setSelectedInterval] = useState('8');</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+[nextAdministration, setNextAdministration] = useState(null);</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+intervals = [</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 1, label: '1 settimana' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 2, label: '2 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 4, label: '4 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 6, label: '6 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 8, label: '8 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 12, label: '12 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 14, label: '14 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 16, label: '16 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 20, label: '20 settimane' },</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                {
+weeks: 24, label: '24 settimane' }</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            ];</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+dayNames = ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì',
+'Giovedì', 'Venerdì', 'Sabato'];</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+monthNames = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio',
+'Giugno',</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                    
+          'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre',
+'Dicembre'];</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+formatDate = (date) =&gt; {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const day = date.getDate();</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const month = monthNames[date.getMonth()];</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const year = date.getFullYear();</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const dayName = dayNames[date.getDay()];</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+return {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+fullDate: `${dayName} ${day} ${month} ${year}`,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+shortDate: `${day}/${(date.getMonth() + 1).toString().padStart(2,
+'0')}/${year}`,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+dayName: dayName,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+day: day,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+month: month,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+year: year</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                };</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            };</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+getWeekdayRange = (targetDate) =&gt; {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const date = new Date(targetDate);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const dayOfWeek = date.getDay();</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const monday = new Date(date);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const daysFromMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+monday.setDate(date.getDate() - daysFromMonday);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const friday = new Date(monday);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+friday.setDate(monday.getDate() + 4);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+return {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+start: formatDate(monday).day,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+end: formatDate(friday).day,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+month: formatDate(targetDate).month,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+startFull: formatDate(monday).shortDate,</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+endFull: formatDate(friday).shortDate</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                };</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            };</p>
+<p style="line-height: 100%; margin-bottom: 0cm"><br/>
+
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">            const
+calculateNextAdministration = () =&gt; {</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const current = new Date(currentDate);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const intervalWeeks = parseInt(selectedInterval);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const nextDate = new Date(current);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+nextDate.setDate(current.getDate() + (intervalWeeks * 7));</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const formatted = formatDate(nextDate);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+const range = getWeekdayRange(nextDate);</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                
+</p>
+<p style="line-height: 100%; margin-bottom: 0cm">               
+setNextAdministration({</p>
+<p style="line-height: 100%; margin-bottom: 0cm">                   
+interval: interva</p>
+</body>
+</html>
